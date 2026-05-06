@@ -1,0 +1,33 @@
+Implementation details:
+- test-driven development
+- ColorWheel class:
+  - findRGB method:
+    - multiple versions, one takes in hex code, other takes in hsv code; translates into rgb
+  - findHex method: same as above
+  - findHSV method: same as above
+  - ColorWheel(RGB) : takes in RGB object, finds/translates into HSV and HEX and stores as instance variables
+  - ColorWheel(HSV) : takes in HSV object, finds/translates into RGB and HEX and stores as instance variables
+  - ColorWheel(Hex) : takes in Hex object, finds/translates into RGB and HSV and stores as instance variables
+  - mixColors method - given two sets of colors, mix them and return that value
+
+- RGB class:
+  - store red, green, blue as ints
+  - values must stay between 0-255, either error check or use modular for values >255
+  - ToString(): returns in the format: (red, green, blue)
+  - AreEqual(): two RGB objects are equal if their red, green, and blue values are respectively equal
+  - GetHashCode(): their string form
+- HSV class:
+  - store hue as int, store saturation, value as double/float (percentages)
+  - hue is 0-360
+  - saturation and value are 0-100%, so 0.0 to 1.0
+  - toString(): returns in the format: (hue(degrees), saturation%, value%)
+  - AreEqual(): two HSV objects are equal if their h, s, v values are respectively equal
+  - GetHashCode(): their string form
+- Hex class:
+  - constructor takes in a string, parses into RR GG BB (#RRGGBB)
+  - if string is not 6 digits, add 0's until it is. if string is >6 digits, clamp to 6 digits (remove extras)
+  - save string as instance variable
+  - convert to RGB and save that??
+  - AreEqual(): two Hex objects are equal if their Hex strings are equal
+  - GetHashCode(): their string form
+
