@@ -27,7 +27,7 @@ Implementation details:
   - constructor takes in a string, parses into RR GG BB (#RRGGBB)
   - if string is not 6 digits, add 0's until it is. if string is >6 digits, clamp to 6 digits (remove extras)
   - save string as instance variable
-  - convert to RGB and save that??
+  - save RR GG BB as separate instance variables
   - AreEqual(): two Hex objects are equal if their Hex strings are equal
   - GetHashCode(): their string form
 
