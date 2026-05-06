@@ -5,6 +5,7 @@ namespace ColorWheelTests;
 /// <summary>
 /// Unit tests for the Hex class
 /// </summary>
+[TestClass]
 public class HexTests
 {
     // --- Tests for Constructor ---

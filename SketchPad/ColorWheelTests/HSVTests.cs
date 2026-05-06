@@ -5,6 +5,7 @@ namespace ColorWheelTests;
 /// <summary>
 /// Unit tests for the HSV class
 /// </summary>
+[TestClass] 
 public class HSVTests
 {
     // --- Tests for Constructors ---

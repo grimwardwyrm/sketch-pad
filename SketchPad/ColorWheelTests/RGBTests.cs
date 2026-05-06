@@ -5,6 +5,7 @@ namespace ColorWheelTests;
 /// <summary>
 /// Unit tests for the RGB class
 /// </summary>
+[TestClass]
 public class RGBTests
 {
     // --- Tests for Constructors ---
