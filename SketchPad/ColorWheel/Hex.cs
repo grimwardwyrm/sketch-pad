@@ -26,8 +26,8 @@ public class Hex
     /// Creates a Hex object given a hex code. The hex code must be valid (Within the 000000-FFFFFF range).
     /// If the hex code is incomplete, or too long, it will clamp it to exactly 6 digits, adding 0's if necessary.
     /// </summary>
-    /// <param name="hexCode"></param>
-    /// <exception cref="ArgumentOutOfRangeException">If the given hex code is not valid.</exception>
+    /// <param name="hexCode">The hex code</param>
+    /// <exception cref="ArgumentOutOfRangeException">If the given hex code is invalid.</exception>
     public Hex(string hexCode)
     {
         string trueHexCode = ParseToHexFormat(hexCode);
