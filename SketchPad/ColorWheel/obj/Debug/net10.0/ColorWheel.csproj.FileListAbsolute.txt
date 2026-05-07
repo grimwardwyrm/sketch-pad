@@ -1,0 +1,12 @@
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\bin\Debug\net10.0\ColorWheel.deps.json
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\bin\Debug\net10.0\ColorWheel.dll
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\bin\Debug\net10.0\ColorWheel.pdb
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.AssemblyInfoInputs.cache
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.AssemblyInfo.cs
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.csproj.CoreCompileInputs.cache
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.sourcelink.json
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.dll
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\refint\ColorWheel.dll
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ColorWheel.pdb
+C:\Users\Radar\RiderProjects\sketch-pad\SketchPad\ColorWheel\obj\Debug\net10.0\ref\ColorWheel.dll

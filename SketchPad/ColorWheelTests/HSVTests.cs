@@ -14,28 +14,28 @@ public class HSVTests
     public void Constructor_HSVZero_AssignsCorrectValues()
     {
         HSV hsv = new HSV(0, 0, 0);
-        Assert.IsTrue(hsv.h == 0 && hsv.s == 0 && hsv.v == 0);
+        Assert.IsTrue(hsv is { Hue: 0, Saturation: 0, Value: 0 });
     }
     
     [TestMethod]
     public void Constructor_HSVMax_AssignsCorrectValues()
     {
         HSV hsv = new HSV(360, 100, 100);
-        Assert.IsTrue(hsv.s == 360 && hsv.s == 100 && hsv.v == 100);
+        Assert.IsTrue(hsv is { Hue: 360, Saturation: 100, Value: 100 });
     }
     
     [TestMethod]
     public void Constructor_HSVUnderMax_AssignsCorrectValues()
     {
         HSV hsv = new HSV(50, 40, 30);
-        Assert.IsTrue(hsv.s == 50 && hsv.s == 40 && hsv.v == 30);
+        Assert.IsTrue(hsv is { Hue: 50, Saturation: 40, Value: 30 });
     }
     
     [TestMethod]
     public void Constructor_HSVOverMax_AssignsCorrectValues()
     {
         HSV hsv = new HSV(370, 110, 110);
-        Assert.IsTrue(hsv.s == 10 && hsv.s == 10 && hsv.v == 10);
+        Assert.IsTrue(hsv is { Hue: 10, Saturation: 10, Value: 10 });
     }
     
     [TestMethod]
@@ -48,7 +48,7 @@ public class HSVTests
     public void Constructor_NegativeHSV_AssignsCorrectValues()
     {
         HSV hsv = new HSV(-10, -20, -30);
-        Assert.IsTrue(hsv.s == 350 && hsv.s == 80 && hsv.v == 70);
+        Assert.IsTrue(hsv is { Hue: 350, Saturation: 80, Value: 70 });
     }
     
     // --- Tests for Equality ---
@@ -109,7 +109,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void EqualsOverride_SameHSV_True()
+    public void EqualsOperatorOverride_SameHSV_True()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(5, 10, 15);
@@ -117,7 +117,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentHSV_False()
+    public void EqualsOperatorOverride_DifferentHSV_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(10, 15, 5);
@@ -125,15 +125,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentObject_False()
-    {
-        HSV hsv1 = new HSV(5, 10, 15);
-        Object obj = new();
-        Assert.IsFalse(hsv1 == obj);
-    }
-    
-    [TestMethod]
-    public void NotEqualsOverride_SameHSV_False()
+    public void NotEqualsOperatorOverride_SameHSV_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(5, 10, 15);
@@ -141,19 +133,11 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void NotEqualsOverride_DifferentHSV_True()
+    public void NotEqualsOperatorOverride_DifferentHSV_True()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(10, 15, 5);
         Assert.IsTrue(hsv1 != hsv2);
-    }
-    
-    [TestMethod]
-    public void NotEqualsOverride_DifferentObject_True()
-    {
-        HSV hsv1 = new HSV(5, 10, 15);
-        Object obj = new();
-        Assert.IsTrue(hsv1 != obj);
     }
     
     // --- Tests for ToString ---

@@ -1,0 +1,31 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/dotCover/Editor/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\Radar\AppData\Local\JetBrains\Rider2025.3\resharper-host\temp\Rider\vAny\CoverageData\_SketchPad.-1090116365\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0338e44e_002Dbd52_002D4002_002Daec0_002Df617f7f4f151/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RGBTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=50206c52_002D955b_002D4e05_002D9f94_002Df0c2771a5fd1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RGBTests #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=722ba299_002Df732_002D470c_002D960c_002Dc975c44263bf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RGBTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a922e00c_002D42ff_002D4bf8_002Db26e_002Dcd921509b98d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from RGBTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;ProjectFile&gt;854D72DE-5BA4-4403-A965-0195E0502D07/f:RGBTests.cs&lt;/ProjectFile&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c48d292e_002D44d1_002D46d3_002Da12f_002D9f5857286e90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="RGBTests #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.HSVTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ea2942a8_002D8300_002D42fd_002Da34e_002Db6e899072274/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RGBTests #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SketchPad")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df326e42025cbc813d497f3ff35a3f73f3998a91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc1e4709fd0664c2e4391ab1916520fd9009ba89")]
 [assembly: System.Reflection.AssemblyProductAttribute("SketchPad")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SketchPad")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

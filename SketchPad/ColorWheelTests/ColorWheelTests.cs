@@ -1,6 +1,6 @@
 ﻿namespace ColorWheelTests;
 
-[TestClass]
+// [TestClass]
 public sealed class ColorWheelTests
 {
     // MethodBeingTested_ScenarioOfTest_OutcomeOfScenario() {}

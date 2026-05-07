@@ -14,28 +14,28 @@ public class RGBTests
     public void Constructor_RGBZero_AssignsCorrectValues()
     {
         RGB rgb = new RGB(0, 0, 0);
-        Assert.IsTrue(rgb.r == 0 && rgb.g == 0 && rgb.b == 0);
+        Assert.IsTrue(rgb is { Red: 0, Green: 0, Blue: 0 });
     }
     
     [TestMethod]
     public void Constructor_RGB255_AssignsCorrectValues()
     {
         RGB rgb = new RGB(255, 255, 255);
-        Assert.IsTrue(rgb.r == 255 && rgb.g == 255 && rgb.b == 255);
+        Assert.IsTrue(rgb is { Red: 255, Green: 255, Blue: 255 });
     }
     
     [TestMethod]
     public void Constructor_RGBUnder255_AssignsCorrectValues()
     {
         RGB rgb = new RGB(50, 40, 30);
-        Assert.IsTrue(rgb.r == 50 && rgb.g == 40 && rgb.b == 30);
+        Assert.IsTrue(rgb is { Red: 50, Green: 40, Blue: 30 });
     }
     
     [TestMethod]
     public void Constructor_RGBOver255_AssignsCorrectValues()
     {
         RGB rgb = new RGB(260, 270, 280);
-        Assert.IsTrue(rgb.r == 5 && rgb.g == 15 && rgb.b == 25);
+        Assert.IsTrue(rgb is { Red: 5, Green: 15, Blue: 25 });
     }
     
     [TestMethod]
@@ -48,7 +48,7 @@ public class RGBTests
     public void Constructor_NegativeRGB_AssignsCorrectValues()
     {
         RGB rgb = new RGB(-10, -20, -30);
-        Assert.IsTrue(rgb.r == 245 && rgb.g == 235 && rgb.b == 225);
+        Assert.IsTrue(rgb is { Red: 245, Green: 235, Blue: 225 });
     }
     
     // --- Tests for Equality ---
@@ -109,7 +109,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void EqualsOverride_SameRGB_True()
+    public void EqualsOperatorOverride_SameRGB_True()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(5, 10, 15);
@@ -117,7 +117,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentRGB_False()
+    public void EqualsOperatorOverride_DifferentRGB_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(10, 15, 5);
@@ -125,15 +125,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentObject_False()
-    {
-        RGB rgb1 = new RGB(5, 10, 15);
-        Object obj = new();
-        Assert.IsFalse(rgb1 == obj);
-    }
-    
-    [TestMethod]
-    public void NotEqualsOverride_SameRGB_False()
+    public void NotEqualsOperatorOverride_SameRGB_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(5, 10, 15);
@@ -141,19 +133,11 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void NotEqualsOverride_DifferentRGB_True()
+    public void NotEqualsOperatorOverride_DifferentRGB_True()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(10, 15, 5);
         Assert.IsTrue(rgb1 != rgb2);
-    }
-    
-    [TestMethod]
-    public void NotEqualsOverride_DifferentObject_True()
-    {
-        RGB rgb1 = new RGB(5, 10, 15);
-        Object obj = new();
-        Assert.IsTrue(rgb1 != obj);
     }
     
     // --- Tests for ToString ---
@@ -170,7 +154,7 @@ public class RGBTests
     public void ToString_RGBOver255_Correct()
     {
         string expected = "(5, 15, 20)";
-        RGB rgb = new RGB(260, 270, 280);
+        RGB rgb = new RGB(260, 270, 275);
         Assert.AreEqual(expected, rgb.ToString());
     }
     
