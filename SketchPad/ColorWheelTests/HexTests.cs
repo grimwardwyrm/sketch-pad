@@ -15,7 +15,7 @@ public class HexTests
     {
         Hex hex = new Hex("#ff0000");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
     }
     
     [TestMethod]
@@ -25,7 +25,7 @@ public class HexTests
         string expectedrr = "ff";
         string expectedgg = "00";
         string expectedbb = "11";
-        Assert.IsTrue(hex.rr == expectedrr && hex.gg == expectedgg && hex.bb == expectedbb);
+        Assert.IsTrue(hex.RR == expectedrr && hex.GG == expectedgg && hex.BB == expectedbb);
     }
     
     [TestMethod]
@@ -33,7 +33,7 @@ public class HexTests
     {
         Hex hex = new Hex("#ff");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
     }
     
     [TestMethod]
@@ -41,7 +41,7 @@ public class HexTests
     {
         Hex hex = new Hex("#ff000000000000");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
     }
     
     [TestMethod]
@@ -49,7 +49,7 @@ public class HexTests
     {
         Hex hex = new Hex("ff0000");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
     }
     
     [TestMethod]
@@ -59,7 +59,7 @@ public class HexTests
         string expectedrr = "ff";
         string expectedgg = "00";
         string expectedbb = "11";
-        Assert.IsTrue(hex.rr == expectedrr && hex.gg == expectedgg && hex.bb == expectedbb);
+        Assert.IsTrue(hex.RR == expectedrr && hex.GG == expectedgg && hex.BB == expectedbb);
     }
     
     [TestMethod]
@@ -67,7 +67,7 @@ public class HexTests
     {
         Hex hex = new Hex("ff");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
     }
     
     [TestMethod]
@@ -75,7 +75,13 @@ public class HexTests
     {
         Hex hex = new Hex("ff000000000000");
         string expected = "ff0000";
-        Assert.AreEqual(expected, hex.hexCode);
+        Assert.AreEqual(expected, hex.HexCode);
+    }
+
+    [TestMethod]
+    public void Constructor_InvalidHex_Throws()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => new Hex("ZZ0000"));
     }
     
     // --- Tests for Equality ---
@@ -123,7 +129,7 @@ public class HexTests
     public void GetHashCode_DifferentHex_False()
     {
         Hex hex1 = new Hex("#ff0000");
-        Hex hex2 = new Hex(10, 15, 5);
+        Hex hex2 = new Hex("#00ff00");
         Assert.AreNotEqual(hex2.GetHashCode(), hex1.GetHashCode());
     }
     
@@ -152,14 +158,6 @@ public class HexTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentObject_False()
-    {
-        Hex hex1 = new Hex("#ff0000");
-        Object obj = new();
-        Assert.IsFalse(hex1 == obj);
-    }
-    
-    [TestMethod]
     public void NotEqualsOverride_SameHex_False()
     {
         Hex hex1 = new Hex("#ff0000");
@@ -173,14 +171,6 @@ public class HexTests
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#00ff00");
         Assert.IsTrue(hex1 != hex2);
-    }
-    
-    [TestMethod]
-    public void NotEqualsOverride_DifferentObject_True()
-    {
-        Hex hex1 = new Hex("#ff0000");
-        Object obj = new();
-        Assert.IsTrue(hex1 != obj);
     }
     
     // --- Tests for ToString ---

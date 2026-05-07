@@ -90,7 +90,7 @@ public class HSV
     }
 
     /// <summary>
-    /// Returns the hashcode of this HSV, which is its string form.
+    /// Returns the hashcode of this HSV, which is its string form hash.
     /// </summary>
     public override int GetHashCode()
     {

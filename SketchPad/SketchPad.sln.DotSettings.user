@@ -22,6 +22,7 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.RGBTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.HSVTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::854D72DE-5BA4-4403-A965-0195E0502D07::net10.0::ColorWheelTests.HexTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ea2942a8_002D8300_002D42fd_002Da34e_002Db6e899072274/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RGBTests #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
