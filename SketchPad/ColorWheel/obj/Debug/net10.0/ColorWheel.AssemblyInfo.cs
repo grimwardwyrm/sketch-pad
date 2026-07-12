@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ColorWheel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+232c6d9d65c19a5ef210e835baba6bcbedc5dc02")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c90ce86c10ceda1b71b1472bf9bb40da283124a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ColorWheel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ColorWheel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
