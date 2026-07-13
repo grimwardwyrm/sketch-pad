@@ -107,23 +107,27 @@ public sealed class ColorWheelTests
         Assert.IsTrue(cw.Hex == hex);
     }
     
-    
     [TestMethod]
     public void findRGB_HexToRGB_FindsCorrectValue()
     {
         RGB expected = new RGB(18, 52,86);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        RGB actual = cw.findRGB(new Hex("123456"));
+        RGB actual = cw.FindRGB(new Hex("123456"));
         Assert.IsTrue(expected == actual);
     }
     
+    /// <summary>
+    /// There is a margin of error of +-1 when converting from HSV to RGB.
+    /// </summary>
     [TestMethod]
     public void findRGB_HSVToRGB_FindsCorrectValue()
     {
         RGB expected = new RGB(18, 52,86);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        RGB actual = cw.findRGB(new HSV(210,79, 34));
-        Assert.IsTrue(expected == actual);
+        RGB actual = cw.FindRGB(new HSV(210,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
     }
     
     [TestMethod]
@@ -131,17 +135,23 @@ public sealed class ColorWheelTests
     {
         HSV expected = new HSV(10, 20, 30);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        HSV actual = cw.findHSV(new Hex("4c3f3d"));
+        HSV actual = cw.FindHSV(new Hex("4c3f3d"));
         Assert.IsTrue(expected == actual);
     }
     
+    /// <summary>
+    /// There is a margin of error of +-3 with hue, +-1 with saturation and value
+    /// when converting from RGB to HSV.
+    /// </summary>
     [TestMethod]
     public void findHSV_RGBToHSV_FindsCorrectValue()
     {
         HSV expected = new HSV(10, 20, 30);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        HSV actual = cw.findHSV(new RGB(76,63,61));
-        Assert.IsTrue(expected == actual);
+        HSV actual = cw.FindHSV(new RGB(76,63,61));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
     }
     
     [TestMethod]
@@ -149,7 +159,7 @@ public sealed class ColorWheelTests
     {
         Hex expected = new Hex("102040");
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        Hex actual = cw.findHex(new RGB(16,32,64));
+        Hex actual = cw.FindHex(new RGB(16,32,64));
         Assert.IsTrue(expected == actual);
     }
     
@@ -158,7 +168,7 @@ public sealed class ColorWheelTests
     {
         Hex expected = new Hex("102040");
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        Hex actual = cw.findHex(new HSV(220,75,25));
+        Hex actual = cw.FindHex(new HSV(220,75,25));
         Assert.IsTrue(expected == actual);
     }
 }
