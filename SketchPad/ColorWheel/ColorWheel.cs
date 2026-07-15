@@ -123,8 +123,38 @@ public class ColorWheel
     /// <param name="hexInput">The hex code to convert from</param>
     public RGB FindRGB(Hex hexInput)
     {
-        // TODO
-        return new RGB(0, 0, 0);
+        int red = FixRGB(hexInput.RR);
+        int green = FixRGB(hexInput.GG);
+        int blue = FixRGB(hexInput.BB);
+        return new RGB(red, green, blue);
+    }
+
+    /// <summary>
+    /// Finds the RGB range value of a pair of hex digits and returns it.
+    /// </summary>
+    /// <param name="hexDigits">The pair of digits to translate</param>
+    private int FixRGB(string hexDigits)
+    {
+        char[] digits = hexDigits.ToCharArray();
+        char left = digits[0];
+        char right = digits[1];
+        return FixHexDigit(left) * 16 + FixHexDigit(right);
+    }
+
+    /// <summary>
+    /// Turns a singular hex digit into a real number value and returns it,
+    /// adhering to hex rules.
+    /// </summary>
+    /// <param name="hexDigit">The hex digit to translate</param>
+    private int FixHexDigit(char hexDigit)
+    {
+        if (char.IsDigit(hexDigit))
+        {
+            return int.Parse(hexDigit.ToString());
+        }
+        int[] hexValues = [10, 11, 12, 13, 14, 15];
+        int cValue = hexDigit - 65;
+        return hexValues[cValue];
     }
     
     /// <summary>

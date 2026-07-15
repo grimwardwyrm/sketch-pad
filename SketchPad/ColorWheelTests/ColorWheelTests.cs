@@ -111,11 +111,38 @@ public sealed class ColorWheelTests
     }
     
     [TestMethod]
-    public void findRGB_HexToRGB_FindsCorrectValue()
+    public void findRGB_HexToRGBZeros_FindsCorrectValue()
+    {
+        RGB expected = new RGB(0, 0,0);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new Hex("000000"));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findRGB_HexToRGBNums_FindsCorrectValue()
     {
         RGB expected = new RGB(18, 52,86);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
         RGB actual = cw.FindRGB(new Hex("123456"));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findRGB_HexToRGBChars_FindsCorrectValue()
+    {
+        RGB expected = new RGB(255, 238,170);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new Hex("FFEEAA"));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findRGB_HexToRGBMax_FindsCorrectValue()
+    {
+        RGB expected = new RGB(255, 255,255);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new Hex("FFFFFF"));
         Assert.IsTrue(expected == actual);
     }
     
@@ -302,6 +329,15 @@ public sealed class ColorWheelTests
         Hex expected = new Hex("FFEEAA");
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
         Hex actual = cw.FindHex(new RGB(255,238,170));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findHex_RGBToHexCharsMax_FindsCorrectValue()
+    {
+        Hex expected = new Hex("FFFFFF");
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        Hex actual = cw.FindHex(new RGB(255,255,255));
         Assert.IsTrue(expected == actual);
     }
     
