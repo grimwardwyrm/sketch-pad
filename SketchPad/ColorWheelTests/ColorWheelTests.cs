@@ -117,14 +117,91 @@ public sealed class ColorWheelTests
     }
     
     /// <summary>
-    /// There is a margin of error of +-1 when converting from HSV to RGB.
+    /// There is a natural margin of error of +-1 when converting from HSV to RGB.
     /// </summary>
     [TestMethod]
-    public void findRGB_HSVToRGB_FindsCorrectValue()
+    public void findRGB_HSVToRGBZeros_FindsCorrectValue()
     {
-        RGB expected = new RGB(18, 52,86);
+        RGB expected = new RGB(0, 0,0);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
-        RGB actual = cw.FindRGB(new HSV(210,79, 34));
+        RGB actual = cw.FindRGB(new HSV(0,0, 0));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGB60Hue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(86, 86,18);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(60,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGB120Hue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(18, 86,18);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(120,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGB180Hue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(18, 86,86);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(180,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGB240Hue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(18, 18,86);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(240,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGB300Hue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(86, 18,86);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(300,79, 34));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGBMaxValue_FindsCorrectValue()
+    {
+        RGB expected = new RGB(255, 255,255);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(0,0, 100));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
+    }
+    
+    [TestMethod]
+    public void findRGB_HSVToRGBMaxHSV_FindsCorrectValue()
+    {
+        RGB expected = new RGB(255, 0,0);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        RGB actual = cw.FindRGB(new HSV(360,100, 100));
         Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Red - actual.Red));
         Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Green - actual.Green));
         Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Blue - actual.Blue));
@@ -140,11 +217,22 @@ public sealed class ColorWheelTests
     }
     
     /// <summary>
-    /// There is a margin of error of +-3 with hue, +-1 with saturation and value
+    /// There is a natural margin of error of +-3 with hue, +-1 with saturation and value
     /// when converting from RGB to HSV.
     /// </summary>
     [TestMethod]
-    public void findHSV_RGBToHSV_FindsCorrectValue()
+    public void findHSV_RGBToHSVZeros_FindsCorrectValue()
+    {
+        HSV expected = new HSV(0, 0, 0);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new RGB(0,0,0));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_RGBToHSVRedMax_FindsCorrectValue()
     {
         HSV expected = new HSV(10, 20, 30);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
@@ -155,11 +243,62 @@ public sealed class ColorWheelTests
     }
     
     [TestMethod]
-    public void findHex_RGBToHex_FindsCorrectValue()
+    public void findHSV_RGBToHSVGreenMax_FindsCorrectValue()
+    {
+        HSV expected = new HSV(97, 39, 39);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new RGB(76,100,61));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_RGBToHSVBlueMax_FindsCorrectValue()
+    {
+        HSV expected = new HSV(261, 37, 39);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new RGB(76,63,100));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_RGBToHSVMax_FindsCorrectValue()
+    {
+        HSV expected = new HSV(0, 0, 100);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new RGB(255,255,255));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHex_RGBToHexZeros_FindsCorrectValue()
+    {
+        Hex expected = new Hex("000000");
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        Hex actual = cw.FindHex(new RGB(0,0,0));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findHex_RGBToHexNums_FindsCorrectValue()
     {
         Hex expected = new Hex("102040");
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
         Hex actual = cw.FindHex(new RGB(16,32,64));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findHex_RGBToHexChars_FindsCorrectValue()
+    {
+        Hex expected = new Hex("FFEEAA");
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        Hex actual = cw.FindHex(new RGB(255,238,170));
         Assert.IsTrue(expected == actual);
     }
     
@@ -176,6 +315,7 @@ public sealed class ColorWheelTests
 [TestClass]
 public class BlendModesTests
 {
+    // TODO
     [TestMethod]
     public void Multiply_ComputesValues_CorrectRGBValue()
     {

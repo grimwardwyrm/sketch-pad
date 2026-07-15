@@ -64,17 +64,19 @@ public class ColorWheel
     /// <param name="hsvInput">The HSV to convert from</param>
     public RGB FindRGB(HSV hsvInput)
     {
-        double s = hsvInput.Saturation / 100.0;
-        double v = hsvInput.Value / 100.0;
+        double sat = hsvInput.Saturation / 100.0;
+        double val = hsvInput.Value / 100.0;
 
-        double c = v * s;
+        double c = val * sat;
         double x = c * (1 - Math.Abs((hsvInput.Hue / 60.0) % 2 - 1));
-        double m = v - c;
+        double m = val - c;
 
         double rPrime = 0;
         double gPrime = 0;
         double bPrime = 0;
-        switch (hsvInput.Hue)
+
+        double hue = hsvInput.Hue % 360;
+        switch (hue)
         {
             case < 60:
                 rPrime = c;
@@ -96,7 +98,7 @@ public class ColorWheel
                 rPrime = x;
                 bPrime = c;
                 break;
-            case < 360:
+            case <= 360:
                 rPrime = c;
                 bPrime = x;
                 break;
@@ -113,6 +115,7 @@ public class ColorWheel
     
     public RGB FindRGB(Hex hexInput)
     {
+        // TODO
         return new RGB(0, 0, 0);
     }
     
@@ -125,34 +128,35 @@ public class ColorWheel
         double red = rgbInput.Red / 255.0;
         double green = rgbInput.Green / 255.0;
         double blue = rgbInput.Blue / 255.0;
-        double cmax = Math.Max(red, Math.Max(green, blue));
-        double cmin = Math.Min(red, Math.Min(green, blue));
-        double change = cmax - cmin;
+        double max = Math.Max(red, Math.Max(green, blue));
+        double min = Math.Min(red, Math.Min(green, blue));
+        double change = max - min;
         
         double hue = 0;
         if (change != 0)
         {
-            if (cmax == red)
+            // max will always be either red, green, or blue, so equality has no issue
+            if (max == red)
             {
                 hue = (60 * ((green - blue) / change) + 360) % 360;
             }
-            else if (cmax == green)
+            else if (max == green)
             {
                 hue = (60 * ((blue - red) / change) + 120) % 360;
             }
-            else if (cmax == blue)
+            else if (max == blue)
             {
                 hue = (60 * ((red - green) / change) + 240) % 360;
             }
         }
         
         double saturation = 0;
-        if (cmax != 0)
+        if (max != 0)
         {
-            saturation = (change / cmax) * 100;
+            saturation = (change / max) * 100;
         }
 
-        double value = cmax * 100;
+        double value = max * 100;
         
         return new HSV((int)Math.Round(hue), (int)Math.Round(saturation), 
             (int)Math.Round(value));
@@ -160,16 +164,47 @@ public class ColorWheel
     
     public HSV FindHSV(Hex hexInput)
     {
+        // TODO
         return new HSV(0, 0, 0);
     }
     
+    /// <summary>
+    /// Converts RGB to Hex and returns it.
+    /// </summary>
+    /// <param name="rgbInput">The RGB to convert from.</param>
     public Hex FindHex(RGB rgbInput)
     {
-        return new Hex("0");
+        (int redChangeBase, int redRemainder) = Math.DivRem(rgbInput.Red, 16);
+        (int greenChangeBase, int greenRemainder) = Math.DivRem(rgbInput.Green, 16);
+        (int blueChangeBase, int blueRemainder) = Math.DivRem(rgbInput.Blue, 16);
+
+        string red = FixHex(redChangeBase) + FixHex(redRemainder);
+        string green = FixHex(greenChangeBase) + FixHex(greenRemainder);
+        string blue = FixHex(blueChangeBase) + FixHex(blueRemainder);
+
+        string hex = red + green + blue;
+        
+        return new Hex(hex);
+    }
+
+    /// <summary>
+    /// Fixes a hex value to adhere to hex rules (10=A, 11=B, 12=C, 13=D, 14=E, 15=F).
+    /// </summary>
+    /// <param name="hexDigit">The hex digit to convert from.</param>
+    private string FixHex(int hexDigit)
+    {
+        string[] hexValues = ["A", "B", "C", "D", "E", "F"];
+        string stringForm = hexDigit.ToString();
+        if (hexDigit > 9)
+        {
+            stringForm = hexValues[hexDigit % 10];
+        }
+        return stringForm;
     }
     
     public Hex FindHex(HSV hsvInput)
     {
+        // TODO
         return new Hex("0");
     }
 }
