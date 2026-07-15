@@ -2,6 +2,9 @@
 
 namespace ColorWheelTests;
 
+/// <summary>
+/// Unit tests for the ColorWheel class.
+/// </summary>
 [TestClass]
 public sealed class ColorWheelTests
 {
@@ -312,6 +315,9 @@ public sealed class ColorWheelTests
     }
 }
 
+/// <summary>
+/// Unit tests for blending modes in the ColorWheel class.
+/// </summary>
 [TestClass]
 public class BlendModesTests
 {

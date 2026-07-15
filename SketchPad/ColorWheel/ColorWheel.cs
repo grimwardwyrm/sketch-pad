@@ -1,5 +1,9 @@
 ﻿namespace ColorWheel;
 
+/// <summary>
+/// Represents a color wheel. Holds the properties of a single color, with methods
+/// to convert that color.
+/// </summary>
 public class ColorWheel
 {
     /// <summary>
@@ -113,6 +117,10 @@ public class ColorWheel
         return rgb;
     }
     
+    /// <summary>
+    /// Converts a Hex code into RGB values and returns it.
+    /// </summary>
+    /// <param name="hexInput">The hex code to convert from</param>
     public RGB FindRGB(Hex hexInput)
     {
         // TODO
@@ -162,6 +170,10 @@ public class ColorWheel
             (int)Math.Round(value));
     }
     
+    /// <summary>
+    /// Converts a Hex code into HSV values and returns it.
+    /// </summary>
+    /// <param name="hexInput">The hex code to convert from</param>
     public HSV FindHSV(Hex hexInput)
     {
         // TODO
@@ -169,9 +181,9 @@ public class ColorWheel
     }
     
     /// <summary>
-    /// Converts RGB to Hex and returns it.
+    /// Converts RGB to a Hex code and returns it.
     /// </summary>
-    /// <param name="rgbInput">The RGB to convert from.</param>
+    /// <param name="rgbInput">The RGB to convert from</param>
     public Hex FindHex(RGB rgbInput)
     {
         (int redChangeBase, int redRemainder) = Math.DivRem(rgbInput.Red, 16);
@@ -190,7 +202,7 @@ public class ColorWheel
     /// <summary>
     /// Fixes a hex value to adhere to hex rules (10=A, 11=B, 12=C, 13=D, 14=E, 15=F).
     /// </summary>
-    /// <param name="hexDigit">The hex digit to convert from.</param>
+    /// <param name="hexDigit">The hex digit to convert from</param>
     private string FixHex(int hexDigit)
     {
         string[] hexValues = ["A", "B", "C", "D", "E", "F"];
@@ -202,6 +214,10 @@ public class ColorWheel
         return stringForm;
     }
     
+    /// <summary>
+    /// Converts HSV values into a Hex code and returns it.
+    /// </summary>
+    /// <param name="hsvInput">The HSV values to convert from</param>
     public Hex FindHex(HSV hsvInput)
     {
         // TODO
