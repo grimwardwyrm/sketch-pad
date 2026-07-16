@@ -87,7 +87,7 @@ public class HexTests
     // --- Tests for Equality ---
 
     [TestMethod]
-    public void AreEqual_SameHex_True()
+    public void Equals_SameHex_True()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#ff0000");
@@ -95,7 +95,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentHex_False()
+    public void Equals_DifferentHex_False()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#00ff00");
@@ -103,7 +103,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentObject_False()
+    public void Equals_DifferentObject_False()
     {
         Hex hex1 = new Hex("#ff0000");
         Object obj = new();
@@ -111,7 +111,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void AreEqual_Null_False()
+    public void Equals_Null_False()
     {
         Hex hex1 = new Hex("#ff0000");
         Assert.IsFalse(hex1.Equals(null));
@@ -142,7 +142,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void EqualsOverride_SameHex_True()
+    public void EqualsOperator_SameHex_True()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#ff0000");
@@ -150,7 +150,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void EqualsOverride_DifferentHex_False()
+    public void EqualsOperator_DifferentHex_False()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#00ff00");
@@ -158,7 +158,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void NotEqualsOverride_SameHex_False()
+    public void NotEqualsOperator_SameHex_False()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#ff0000");
@@ -166,7 +166,7 @@ public class HexTests
     }
     
     [TestMethod]
-    public void NotEqualsOverride_DifferentHex_True()
+    public void NotEqualsOperator_DifferentHex_True()
     {
         Hex hex1 = new Hex("#ff0000");
         Hex hex2 = new Hex("#00ff00");

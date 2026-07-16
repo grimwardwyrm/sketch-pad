@@ -134,7 +134,6 @@ public class Hex
     /// <summary>
     /// Returns the hashcode for this Hex, which is its string form hash.
     /// </summary>
-    /// <returns></returns>
     public override int GetHashCode()
     {
         return HexCode.GetHashCode();

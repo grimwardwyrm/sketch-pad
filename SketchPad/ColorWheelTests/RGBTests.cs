@@ -54,7 +54,7 @@ public class RGBTests
     // --- Tests for Equality ---
 
     [TestMethod]
-    public void AreEqual_SameRGB_True()
+    public void Equals_SameRGB_True()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(5, 10, 15);
@@ -62,7 +62,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentRGB_False()
+    public void Equals_DifferentRGB_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(10, 15, 5);
@@ -70,7 +70,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentObject_False()
+    public void Equals_DifferentObject_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         Object obj = new();
@@ -78,7 +78,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void AreEqual_Null_False()
+    public void Equals_Null_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         Assert.IsFalse(rgb1.Equals(null));
@@ -109,7 +109,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void EqualsOperatorOverride_SameRGB_True()
+    public void EqualsOperator_SameRGB_True()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(5, 10, 15);
@@ -117,7 +117,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void EqualsOperatorOverride_DifferentRGB_False()
+    public void EqualsOperator_DifferentRGB_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(10, 15, 5);
@@ -125,7 +125,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void NotEqualsOperatorOverride_SameRGB_False()
+    public void NotEqualsOperator_SameRGB_False()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(5, 10, 15);
@@ -133,7 +133,7 @@ public class RGBTests
     }
     
     [TestMethod]
-    public void NotEqualsOperatorOverride_DifferentRGB_True()
+    public void NotEqualsOperator_DifferentRGB_True()
     {
         RGB rgb1 = new RGB(5, 10, 15);
         RGB rgb2 = new RGB(10, 15, 5);

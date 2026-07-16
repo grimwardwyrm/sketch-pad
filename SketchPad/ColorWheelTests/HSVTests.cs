@@ -54,7 +54,7 @@ public class HSVTests
     // --- Tests for Equality ---
 
     [TestMethod]
-    public void AreEqual_SameHSV_True()
+    public void Equals_SameHSV_True()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(5, 10, 15);
@@ -62,7 +62,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentHSV_False()
+    public void Equals_DifferentHSV_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(10, 15, 5);
@@ -70,7 +70,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void AreEqual_DifferentObject_False()
+    public void Equals_DifferentObject_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         Object obj = new();
@@ -78,7 +78,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void AreEqual_Null_False()
+    public void Equals_Null_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         Assert.IsFalse(hsv1.Equals(null));
@@ -109,7 +109,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void EqualsOperatorOverride_SameHSV_True()
+    public void EqualsOperator_SameHSV_True()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(5, 10, 15);
@@ -117,7 +117,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void EqualsOperatorOverride_DifferentHSV_False()
+    public void EqualsOperator_DifferentHSV_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(10, 15, 5);
@@ -125,7 +125,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void NotEqualsOperatorOverride_SameHSV_False()
+    public void NotEqualsOperator_SameHSV_False()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(5, 10, 15);
@@ -133,7 +133,7 @@ public class HSVTests
     }
     
     [TestMethod]
-    public void NotEqualsOperatorOverride_DifferentHSV_True()
+    public void NotEqualsOperator_DifferentHSV_True()
     {
         HSV hsv1 = new HSV(5, 10, 15);
         HSV hsv2 = new HSV(10, 15, 5);

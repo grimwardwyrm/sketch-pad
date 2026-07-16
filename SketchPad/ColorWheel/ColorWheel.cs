@@ -253,4 +253,49 @@ public class ColorWheel
         RGB rgb = FindRGB(hsvInput);
         return FindHex(rgb);
     }
+    
+    /// <summary>
+    /// Operator overload; reports whether two ColorWheel objects == each other based on
+    /// the <see cref="Equals"/> method.
+    /// </summary>
+    /// <param name="left">The first ColorWheel to check equality</param>
+    /// <param name="right">The second ColorWheel to check equality</param>
+    public static bool operator ==(ColorWheel left, ColorWheel right)
+    {
+        return left.Equals(right);
+    }
+    
+    /// <summary>
+    /// Operator overload; reports whether two ColorWheel objects != each other based on
+    /// the <see cref="Equals"/> method.
+    /// </summary>
+    /// <param name="left">The first ColorWheel to check equality</param>
+    /// <param name="right">The second ColorWheel to check equality</param>
+    public static bool operator !=(ColorWheel left, ColorWheel right)
+    {
+        return !left.Equals(right);
+    }
+
+    /// <summary>
+    /// Two ColorWheel objects are equal if their colors are the same.
+    /// </summary>
+    /// <param name="obj">The object to check for equality</param>
+    public override bool Equals(object? obj)
+    {
+        if (obj is ColorWheel colorWheel)
+        {
+            return Rgb.Red == colorWheel.Rgb.Red && Rgb.Green == colorWheel.Rgb.Green
+                                                   && Rgb.Blue == colorWheel.Rgb.Blue;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Returns the hashcode for this ColorWheel, which is the RGB hashcode.
+    /// </summary>
+    public override int GetHashCode()
+    {
+        return Rgb.GetHashCode();
+    }
 }

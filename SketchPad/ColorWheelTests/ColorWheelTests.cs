@@ -402,72 +402,129 @@ public sealed class ColorWheelTests
         Hex actual = cw.FindHex(new HSV(360,100,100));
         Assert.IsTrue(expected == actual);
     }
+
+    [TestMethod]
+    public void EqualsOperator_SameColorWheel_True()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(hex);
+        Assert.IsTrue(left == right);
+    }
+    
+    [TestMethod]
+    public void EqualsOperator_DifferentColorWheel_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel();
+        Assert.IsFalse(left == right);
+    }
+    
+    [TestMethod]
+    public void NotEqualsOperator_SameColorWheel_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(hex);
+        Assert.IsFalse(left != right);
+    }
+    
+    [TestMethod]
+    public void NotEqualsOperator_DifferentColorWheel_True()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel();
+        Assert.IsTrue(left != right);
+    }
+    
+    [TestMethod]
+    public void Equals_SameColorWheel_True()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(hex);
+        Assert.IsTrue(left.Equals(right));
+    }
+    
+    [TestMethod]
+    public void Equals_DifferentColorWheel_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel();
+        Assert.IsFalse(left.Equals(right));
+    }
+    
+    [TestMethod]
+    public void Equals_DifferentObject_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        Assert.IsFalse(left.Equals(new LinkedList<string>()));
+    }
+    
+    [TestMethod]
+    public void Equals_Null_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        Assert.IsFalse(left.Equals(null));
+    }
+    
+    [TestMethod]
+    public void GetHashCode_SameColorWheel_True()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(hex);
+        Assert.AreEqual(left.GetHashCode(), right.GetHashCode());
+    }
+    
+    [TestMethod]
+    public void GetHashCode_DifferentColorWheel_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel();
+        Assert.AreNotEqual(left.GetHashCode(), right.GetHashCode());
+    }
+    
+    [TestMethod]
+    public void GetHashCode_DifferentObject_False()
+    {
+        Hex hex = new Hex("FF0000");
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(hex);
+        Object right = new();
+        Assert.AreNotEqual(left.GetHashCode(), right.GetHashCode());
+    }
 }
 
 /// <summary>
-/// Unit tests for blending modes in the ColorWheel class.
+/// Unit tests for the BlendModes class.
 /// </summary>
 [TestClass]
 public class BlendModesTests
 {
     // TODO
     [TestMethod]
-    public void Multiply_ComputesValues_CorrectRGBValue()
+    public void Multiply_ComputesValues_CorrectValue()
     {
     }
     
     [TestMethod]
-    public void Multiply_ComputesValues_CorrectHexValue()
+    public void Add_ComputesValues_CorrectValue()
     {
     }
     
     [TestMethod]
-    public void Multiply_ComputesValues_CorrectHSVValue()
-    {
-    }   
-    
-    [TestMethod]
-    public void Add_ComputesValues_CorrectRGBValue()
+    public void Screen_ComputesValues_CorrectValue()
     {
     }
     
     [TestMethod]
-    public void Add_ComputesValues_CorrectHexValue()
+    public void Overlay_ComputesValues_CorrectValue()
     {
     }
-    
-    [TestMethod]
-    public void Add_ComputesValues_CorrectHSVValue()
-    {
-    }  
-    
-    [TestMethod]
-    public void Screen_ComputesValues_CorrectRGBValue()
-    {
-    }
-    
-    [TestMethod]
-    public void Screen_ComputesValues_CorrectHexValue()
-    {
-    }
-    
-    [TestMethod]
-    public void Screen_ComputesValues_CorrectHSVValue()
-    {
-    }  
-    
-    [TestMethod]
-    public void Overlay_ComputesValues_CorrectRGBValue()
-    {
-    }
-    
-    [TestMethod]
-    public void Overlay_ComputesValues_CorrectHexValue()
-    {
-    }
-    
-    [TestMethod]
-    public void Overlay_ComputesValues_CorrectHSVValue()
-    {
-    }  
 }
