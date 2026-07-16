@@ -299,3 +299,8 @@ public class ColorWheel
         return Rgb.GetHashCode();
     }
 }
+
+public static class BlendModes
+{
+    // TODO
+}

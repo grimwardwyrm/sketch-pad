@@ -509,22 +509,167 @@ public class BlendModesTests
 {
     // TODO
     [TestMethod]
+    public void Darken_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        ColorWheel.ColorWheel actual = BlendModes.Darken(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
     public void Multiply_ComputesValues_CorrectValue()
     {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(30, 30, 230));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(80, 180, 80));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(9, 21, 72));
+        ColorWheel.ColorWheel actual = BlendModes.Multiply(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void LinearBurn_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(6, 6, 6));
+        ColorWheel.ColorWheel actual = BlendModes.LinearBurn(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void ColorBurn_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void Lighten_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel actual = BlendModes.Lighten(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void Screen_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(30, 30, 230));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(80, 180, 80));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(101, 189, 238));
+        ColorWheel.ColorWheel actual = BlendModes.Screen(left, right);
+        
+        Assert.IsTrue(expected == actual);
     }
     
     [TestMethod]
     public void Add_ComputesValues_CorrectValue()
     {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(1, 1, 1));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(3, 3, 3));
+        ColorWheel.ColorWheel actual = BlendModes.Add(left, right);
+        
+        Assert.IsTrue(expected == actual);
     }
     
     [TestMethod]
-    public void Screen_ComputesValues_CorrectValue()
+    public void ColorDodge_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(250, 250, 250));
+        ColorWheel.ColorWheel actual = BlendModes.ColorDodge(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void HardLight_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void SoftLight_ComputesValues_CorrectValue()
     {
     }
     
     [TestMethod]
     public void Overlay_ComputesValues_CorrectValue()
     {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(30, 30, 230));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(80, 180, 80));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(19, 42, 221));
+        ColorWheel.ColorWheel actual = BlendModes.Overlay(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void HardMix_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void LinearLight_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void VividLight_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void Average_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void Exclusion_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void Difference_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(3, 3, 3));
+        ColorWheel.ColorWheel actual = BlendModes.Difference(left, right);
+        
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void Divide_ComputesValues_CorrectValue()
+    {
+    }
+    
+    [TestMethod]
+    public void Subtract_ComputesValues_CorrectValue()
+    {
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(3, 3, 3));
+        ColorWheel.ColorWheel actual = BlendModes.Subtract(left, right);
+        
+        Assert.IsTrue(expected == actual);
     }
 }
