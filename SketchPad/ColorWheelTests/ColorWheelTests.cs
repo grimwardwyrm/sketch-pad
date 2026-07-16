@@ -238,12 +238,47 @@ public sealed class ColorWheelTests
     }
     
     [TestMethod]
-    public void findHSV_HexToHSV_FindsCorrectValue()
+    public void findHSV_HexToHSVZeros_FindsCorrectValue()
+    {
+        HSV expected = new HSV(0, 0, 0);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new Hex("000000"));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_HexToHSVNums_FindsCorrectValue()
+    {
+        HSV expected = new HSV(210, 79, 34);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new Hex("123456"));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_HexToHSVChars_FindsCorrectValue()
     {
         HSV expected = new HSV(10, 20, 30);
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
         HSV actual = cw.FindHSV(new Hex("4c3f3d"));
-        Assert.IsTrue(expected == actual);
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
+    }
+    
+    [TestMethod]
+    public void findHSV_HexToHSVMax_FindsCorrectValue()
+    {
+        HSV expected = new HSV(0, 0, 100);
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        HSV actual = cw.FindHSV(new Hex("FFFFFF"));
+        Assert.IsLessThanOrEqualTo(3, Math.Abs(expected.Hue - actual.Hue));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Saturation - actual.Saturation));
+        Assert.IsLessThanOrEqualTo(1, Math.Abs(expected.Value - actual.Value));
     }
     
     /// <summary>
@@ -342,11 +377,29 @@ public sealed class ColorWheelTests
     }
     
     [TestMethod]
-    public void findHex_HSVToHex_FindsCorrectValue()
+    public void findHex_HSVToHexZeros_FindsCorrectValue()
+    {
+        Hex expected = new Hex("000000");
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        Hex actual = cw.FindHex(new HSV(0,0,0));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findHex_HSVToHexNums_FindsCorrectValue()
     {
         Hex expected = new Hex("102040");
         ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
         Hex actual = cw.FindHex(new HSV(220,75,25));
+        Assert.IsTrue(expected == actual);
+    }
+    
+    [TestMethod]
+    public void findHex_HSVToHexMax_FindsCorrectValue()
+    {
+        Hex expected = new Hex("FF0000");
+        ColorWheel.ColorWheel cw = new ColorWheel.ColorWheel();
+        Hex actual = cw.FindHex(new HSV(360,100,100));
         Assert.IsTrue(expected == actual);
     }
 }

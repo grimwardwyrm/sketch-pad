@@ -135,7 +135,7 @@ public class ColorWheel
     /// <param name="hexDigits">The pair of digits to translate</param>
     private int FixRGB(string hexDigits)
     {
-        char[] digits = hexDigits.ToCharArray();
+        char[] digits = hexDigits.ToUpper().ToCharArray();
         char left = digits[0];
         char right = digits[1];
         return FixHexDigit(left) * 16 + FixHexDigit(right);
@@ -206,8 +206,8 @@ public class ColorWheel
     /// <param name="hexInput">The hex code to convert from</param>
     public HSV FindHSV(Hex hexInput)
     {
-        // TODO
-        return new HSV(0, 0, 0);
+        RGB rgb = FindRGB(hexInput);
+        return FindHSV(rgb);
     }
     
     /// <summary>
@@ -250,7 +250,7 @@ public class ColorWheel
     /// <param name="hsvInput">The HSV values to convert from</param>
     public Hex FindHex(HSV hsvInput)
     {
-        // TODO
-        return new Hex("0");
+        RGB rgb = FindRGB(hsvInput);
+        return FindHex(rgb);
     }
 }
