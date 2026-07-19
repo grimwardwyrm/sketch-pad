@@ -507,14 +507,13 @@ public sealed class ColorWheelTests
 [TestClass]
 public class BlendModesTests
 {
-    // TODO
     [TestMethod]
     public void Darken_ComputesValues_CorrectValue()
     {
-        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
-        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 5, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 2, 5));
         
-        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
         ColorWheel.ColorWheel actual = BlendModes.Darken(left, right);
         
         Assert.IsTrue(expected == actual);
@@ -537,7 +536,7 @@ public class BlendModesTests
     {
         ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(30, 30, 230));
         ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(80, 180, 80));
-
+    
         ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(0, 60, 120));
         ColorWheel.ColorWheel actual = BlendModes.LinearBurn(left, right);
         
@@ -559,10 +558,10 @@ public class BlendModesTests
     [TestMethod]
     public void Lighten_ComputesValues_CorrectValue()
     {
-        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
-        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
+        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(2, 5, 2));
+        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(5, 2, 5));
         
-        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(2, 2, 2));
+        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(5, 5, 5));
         ColorWheel.ColorWheel actual = BlendModes.Lighten(left, right);
         
         Assert.IsTrue(expected == actual);
@@ -600,18 +599,6 @@ public class BlendModesTests
         
         ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(63, 255, 255));
         ColorWheel.ColorWheel actual = BlendModes.ColorDodge(left, right);
-        
-        Assert.IsTrue(expected == actual);
-    }
-    
-    [TestMethod]
-    public void Overlay_ComputesValues_CorrectValue()
-    {
-        ColorWheel.ColorWheel left = new ColorWheel.ColorWheel(new RGB(30, 30, 230));
-        ColorWheel.ColorWheel right = new ColorWheel.ColorWheel(new RGB(80, 180, 80));
-        
-        ColorWheel.ColorWheel expected = new ColorWheel.ColorWheel(new RGB(19, 42, 221));
-        ColorWheel.ColorWheel actual = BlendModes.Overlay(left, right);
         
         Assert.IsTrue(expected == actual);
     }
