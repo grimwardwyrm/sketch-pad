@@ -284,8 +284,8 @@ public class ColorWheel
     {
         if (obj is ColorWheel colorWheel)
         {
-            return Rgb.Red == colorWheel.Rgb.Red && Rgb.Green == colorWheel.Rgb.Green
-                                                   && Rgb.Blue == colorWheel.Rgb.Blue;
+            return Math.Abs(Rgb.Red - colorWheel.Rgb.Red) < 2 && Math.Abs(Rgb.Green - colorWheel.Rgb.Green) < 2
+                                                      && Math.Abs(Rgb.Blue - colorWheel.Rgb.Blue) < 2;
         }
 
         return false;
@@ -306,8 +306,7 @@ public class ColorWheel
 public static class BlendModes
 {
     /// <summary>
-    /// Finds the smallest values of the given two colors and returns it.
-    /// Order unimportant.
+    /// Finds the smallest (darkest) values of each color channel and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -321,7 +320,7 @@ public static class BlendModes
     }
 
     /// <summary>
-    /// Multiplies each channel by itself and returns it. Order unimportant.
+    /// Multiplies each channel by itself and returns it. 
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -332,15 +331,15 @@ public static class BlendModes
         double greenMulti = (a.Rgb.Green / 255.0) * (b.Rgb.Green / 255.0);
         double blueMulti = (a.Rgb.Blue / 255.0) * (b.Rgb.Blue / 255.0);
 
-        int red = (int) Math.Round(255 * redMulti);
-        int green = (int) Math.Round(255 * greenMulti);
-        int blue = (int) Math.Round(255 * blueMulti);
+        int red = (int) Math.Floor(255 * redMulti);
+        int green = (int) Math.Floor(255 * greenMulti);
+        int blue = (int) Math.Floor(255 * blueMulti);
 
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Performs a linear burn on two colors and returns it.
+    /// Inverts the sum of the two layers and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -350,15 +349,16 @@ public static class BlendModes
         double greenAdd = (a.Rgb.Green / 255.0) + (b.Rgb.Green / 255.0) - 1;
         double blueAdd = (a.Rgb.Blue / 255.0) + (b.Rgb.Blue / 255.0) - 1;
 
-        int red = (int) Math.Round(255 * redAdd);
-        int green = (int) Math.Round(255 * greenAdd);
-        int blue = (int) Math.Round(255 * blueAdd);
+        int red = (int) Math.Floor(255 * redAdd);
+        int green = (int) Math.Floor(255 * greenAdd);
+        int blue = (int) Math.Floor(255 * blueAdd);
 
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Performs a color burn on two colors and returns it.
+    /// Divides the inverted bottom layer by the top layer, then inverts it again
+    /// and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -368,15 +368,15 @@ public static class BlendModes
         double greenDiv = 1-(1-b.Rgb.Green / 255.0) / (a.Rgb.Green / 255.0);
         double blueDiv = 1-(1-b.Rgb.Blue / 255.0) / (a.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255.0 * redDiv);
-        int green = (int) Math.Round(255.0 * greenDiv);
-        int blue = (int) Math.Round(255.0 * blueDiv);
+        int red = (int) Math.Floor(255.0 * redDiv);
+        int green = (int) Math.Floor(255.0 * greenDiv);
+        int blue = (int) Math.Floor(255.0 * blueDiv);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Finds the largest values of the given two colors and returns it.
+    /// Finds the largest (lightest) value of each color channel and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -390,25 +390,25 @@ public static class BlendModes
     }
     
     /// <summary>
-    /// Screens the top and bottom layers and returns it.
+    /// Multiplies the inverted values of the top and bottom layers and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
     public static ColorWheel Screen(ColorWheel a, ColorWheel b)
     {
-        double redMulti = (1-a.Rgb.Red / 255.0) * (1-b.Rgb.Red / 255.0);
-        double greenMulti = (1-a.Rgb.Green / 255.0) * (1-b.Rgb.Green / 255.0);
-        double blueMulti = (1-a.Rgb.Blue / 255.0) * (1-b.Rgb.Blue / 255.0);
+        double redMulti = 1-(1-a.Rgb.Red / 255.0) * (1-b.Rgb.Red / 255.0);
+        double greenMulti = 1-(1-a.Rgb.Green / 255.0) * (1-b.Rgb.Green / 255.0);
+        double blueMulti = 1-(1-a.Rgb.Blue / 255.0) * (1-b.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255.0 * 1-redMulti);
-        int green = (int) Math.Round(255.0 * 1-greenMulti);
-        int blue = (int) Math.Round(255.0 * 1-blueMulti);
+        int red = (int) Math.Floor(255.0 * redMulti);
+        int green = (int) Math.Floor(255.0 * greenMulti);
+        int blue = (int) Math.Floor(255.0 * blueMulti);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Adds the top and bottom layers and returns it.
+    /// Sums the values in the top and bottom layers and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -418,15 +418,15 @@ public static class BlendModes
         double greenSub = b.Rgb.Green / 255.0 + (a.Rgb.Green / 255.0);
         double blueSub = b.Rgb.Blue / 255.0 + (a.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255.0 * redSub);
-        int green = (int) Math.Round(255.0 * greenSub);
-        int blue = (int) Math.Round(255.0 * blueSub);
+        int red = (int) Math.Floor(255.0 * redSub);
+        int green = (int) Math.Floor(255.0 * greenSub);
+        int blue = (int) Math.Floor(255.0 * blueSub);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Performs a color dodge on two layers and returns it.
+    /// Divides the bottom layer by the top inverted layer and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -436,9 +436,9 @@ public static class BlendModes
         double greenSub = b.Rgb.Green / 255.0 / (1-a.Rgb.Green / 255.0);
         double blueSub = b.Rgb.Blue / 255.0 / (1-a.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255.0 * redSub);
-        int green = (int) Math.Round(255.0 * greenSub);
-        int blue = (int) Math.Round(255.0 * blueSub);
+        int red = (int) Math.Floor(255.0 * redSub);
+        int green = (int) Math.Floor(255.0 * greenSub);
+        int blue = (int) Math.Floor(255.0 * blueSub);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
@@ -454,9 +454,9 @@ public static class BlendModes
         double greenSub = Math.Abs(b.Rgb.Green / 255.0 - (a.Rgb.Green / 255.0));
         double blueSub = Math.Abs(b.Rgb.Blue / 255.0 - (a.Rgb.Blue / 255.0));
     
-        int red = (int) Math.Round(255 * redSub);
-        int green = (int) Math.Round(255 * greenSub);
-        int blue = (int) Math.Round(255 * blueSub);
+        int red = (int) Math.Floor(255 * redSub);
+        int green = (int) Math.Floor(255 * greenSub);
+        int blue = (int) Math.Floor(255 * blueSub);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
@@ -472,15 +472,15 @@ public static class BlendModes
         double greenDiv = b.Rgb.Green / 255.0 / (a.Rgb.Green / 255.0);
         double blueDiv = b.Rgb.Blue / 255.0 / (a.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255 * redDiv);
-        int green = (int) Math.Round(255 * greenDiv);
-        int blue = (int) Math.Round(255 * blueDiv);
+        int red = (int) Math.Floor(255 * redDiv);
+        int green = (int) Math.Floor(255 * greenDiv);
+        int blue = (int) Math.Floor(255 * blueDiv);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
     
     /// <summary>
-    /// Subtracts the bottom layer by the top layer and returns it.
+    /// Subtracts the bottom layer from the top layer and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
     /// <param name="b">The bottom layer</param>
@@ -490,9 +490,9 @@ public static class BlendModes
         double greenSub = b.Rgb.Green / 255.0 - (a.Rgb.Green / 255.0);
         double blueSub = b.Rgb.Blue / 255.0 - (a.Rgb.Blue / 255.0);
     
-        int red = (int) Math.Round(255 * redSub);
-        int green = (int) Math.Round(255 * greenSub);
-        int blue = (int) Math.Round(255 * blueSub);
+        int red = (int) Math.Floor(255 * redSub);
+        int green = (int) Math.Floor(255 * greenSub);
+        int blue = (int) Math.Floor(255 * blueSub);
     
         return new ColorWheel(new RGB(red, green, blue));
     }
