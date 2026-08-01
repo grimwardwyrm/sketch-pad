@@ -35,7 +35,7 @@ public class RGBTests
     public void Constructor_RGBOver255_AssignsCorrectValues()
     {
         RGB rgb = new RGB(260, 270, 280);
-        Assert.IsTrue(rgb is { Red: 5, Green: 15, Blue: 25 });
+        Assert.IsTrue(rgb is { Red: 255, Green: 255, Blue: 255 });
     }
     
     [TestMethod]
@@ -48,7 +48,7 @@ public class RGBTests
     public void Constructor_NegativeRGB_AssignsCorrectValues()
     {
         RGB rgb = new RGB(-10, -20, -30);
-        Assert.IsTrue(rgb is { Red: 245, Green: 235, Blue: 225 });
+        Assert.IsTrue(rgb is { Red: 0, Green: 0, Blue: 0 });
     }
     
     // --- Tests for Equality ---
@@ -153,7 +153,7 @@ public class RGBTests
     [TestMethod]
     public void ToString_RGBOver255_Correct()
     {
-        string expected = "(5, 15, 20)";
+        string expected = "(255, 255, 255)";
         RGB rgb = new RGB(260, 270, 275);
         Assert.AreEqual(expected, rgb.ToString());
     }
@@ -161,7 +161,7 @@ public class RGBTests
     [TestMethod]
     public void ToString_NegativeRGB_Correct()
     {
-        string expected = "(245, 235, 225)";
+        string expected = "(0, 0, 0)";
         RGB rgb = new RGB(-10, -20, -30);
         Assert.AreEqual(expected, rgb.ToString());
     }

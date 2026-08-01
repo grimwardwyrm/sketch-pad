@@ -20,7 +20,7 @@ public class RGB
     
     /// <summary>
     /// Creates a new RGB object given a red, green, and blue value. These values are restricted to the range [0-255].
-    /// Values outside the range will be clamped mod 255.
+    /// Values outside the range will be clamped in the range [0-255].
     /// </summary>
     /// <param name="red">The red value</param>
     /// <param name="green">The green value</param>
@@ -36,15 +36,18 @@ public class RGB
     }
 
     /// <summary>
-    /// Clamps a value to stay in the range [0-255] using modular arithmetic.
+    /// Clamps a value to stay in the range [0-255].
     /// </summary>
     /// <param name="value">The value to clamp</param>
     /// <returns>Either the original value, or the value after it was clamped</returns>
     private static int Clamp(int value)
     {
-        if (value is > 255 or < 0)
+        if (value > 255)
         {
-            return (value % 255 + 255) % 255;
+            value = 255;
+        } else if (value < 0)
+        {
+            value = 0;
         }
 
         return value;
