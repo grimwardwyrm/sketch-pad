@@ -444,6 +444,142 @@ public static class BlendModes
     }
     
     /// <summary>
+    /// Performs a hard light of the top layer onto the bottom layer and returns it.
+    /// </summary>
+    /// <param name="a">The top layer</param>
+    /// <param name="b">The bottom layer</param>
+    public static ColorWheel HardLight(ColorWheel a, ColorWheel b)
+    {
+        double redVal = HardLightHelper(a.Rgb.Red, b.Rgb.Red);
+        double greenVal = HardLightHelper(a.Rgb.Green, b.Rgb.Green);
+        double blueVal = HardLightHelper(a.Rgb.Blue, b.Rgb.Blue);
+    
+        int red = (int) Math.Floor(255 * redVal);
+        int green = (int) Math.Floor(255 * greenVal);
+        int blue = (int) Math.Floor(255 * blueVal);
+    
+        return new ColorWheel(new RGB(red, green, blue));
+    }
+    
+    /// <summary>
+    /// Helper method for HardLight to compute color channel values.
+    /// </summary>
+    /// <param name="a">The color value of the top layer</param>
+    /// <param name="b">The color value of the bottom layer</param>
+    private static double HardLightHelper(int a, int b)
+    {
+        double normalizedA = a / 255.0;
+        double normalizedB = b / 255.0;
+        if (normalizedA < 0.5)
+        {
+            return 2 * normalizedA * normalizedB;
+        }
+
+        return 1 - (2 * (1 - normalizedA) * (1 - normalizedB));
+    }
+    
+    /// <summary>
+    /// Performs a soft light of the top layer onto the bottom layer and returns it.
+    /// </summary>
+    /// <param name="a">The top layer</param>
+    /// <param name="b">The bottom layer</param>
+    public static ColorWheel SoftLight(ColorWheel a, ColorWheel b)
+    {
+        double redVal = SoftLightHelper(a.Rgb.Red, b.Rgb.Red);
+        double greenVal = SoftLightHelper(a.Rgb.Green, b.Rgb.Green);
+        double blueVal = SoftLightHelper(a.Rgb.Blue, b.Rgb.Blue);
+    
+        int red = (int) Math.Floor(255 * redVal);
+        int green = (int) Math.Floor(255 * greenVal);
+        int blue = (int) Math.Floor(255 * blueVal);
+    
+        return new ColorWheel(new RGB(red, green, blue));
+    }
+    
+    /// <summary>
+    /// Helper method for SoftLight to compute color channel values.
+    /// </summary>
+    /// <param name="a">The color value of the top layer</param>
+    /// <param name="b">The color value of the bottom layer</param>
+    private static double SoftLightHelper(int a, int b)
+    {
+        double normalizedA = a / 255.0;
+        double normalizedB = b / 255.0;
+        if (normalizedA < 0.5)
+        {
+            return (1 - 2 * normalizedA) * Math.Pow(normalizedB, 2) + 2 * normalizedB * normalizedA;
+        }
+
+        return 2 * normalizedB * (1 - normalizedA) + Math.Sqrt(normalizedB) * (2 * normalizedA - 1);
+    }
+    
+    /// <summary>
+    /// Shifts color channels where the top layer gets lighter when the bottom layer is lighter,
+    /// or the top layer gets darker if the bottom layer is darker. Then returns those values.
+    /// </summary>
+    /// <param name="a">The top layer</param>
+    /// <param name="b">The bottom layer</param>
+    public static ColorWheel Overlay(ColorWheel a, ColorWheel b)
+    {
+        double redVal = OverlayHelper(a.Rgb.Red, b.Rgb.Red);
+        double greenVal = OverlayHelper(a.Rgb.Green, b.Rgb.Green);
+        double blueVal = OverlayHelper(a.Rgb.Blue, b.Rgb.Blue);
+    
+        int red = (int) Math.Floor(255 * redVal);
+        int green = (int) Math.Floor(255 * greenVal);
+        int blue = (int) Math.Floor(255 * blueVal);
+    
+        return new ColorWheel(new RGB(red, green, blue));
+    }
+
+    /// <summary>
+    /// Helper method for Overlay to compute color channel values.
+    /// </summary>
+    /// <param name="a">The color value of the top layer</param>
+    /// <param name="b">The color value of the bottom layer</param>
+    private static double OverlayHelper(int a, int b)
+    {
+        double normalizedA = a / 255.0;
+        double normalizedB = b / 255.0;
+        if (normalizedB < 0.5)
+        {
+            return 2 * normalizedA * normalizedB;
+        }
+
+        return 1 - (2 * (1 - normalizedA) * (1 - normalizedB));
+    }
+    
+    /// <summary>
+    /// Inverts and shifts color values and returns it.
+    /// </summary>
+    /// <param name="a">The top layer</param>
+    /// <param name="b">The bottom layer</param>
+    public static ColorWheel Exclusion(ColorWheel a, ColorWheel b)
+    {
+        double redVal = ExclusionHelper(a.Rgb.Red, b.Rgb.Red);
+        double greenVal = ExclusionHelper(a.Rgb.Green, b.Rgb.Green);
+        double blueVal = ExclusionHelper(a.Rgb.Blue, b.Rgb.Blue);
+    
+        int red = (int) Math.Floor(255 * redVal);
+        int green = (int) Math.Floor(255 * greenVal);
+        int blue = (int) Math.Floor(255 * blueVal);
+    
+        return new ColorWheel(new RGB(red, green, blue));
+    }
+
+    /// <summary>
+    /// Helper method for Exclusion to compute color channel values.
+    /// </summary>
+    /// <param name="a">The color value of the top layer</param>
+    /// <param name="b">The color value of the bottom layer</param>
+    private static double ExclusionHelper(int a, int b)
+    {
+        double normalizedA = a / 255.0;
+        double normalizedB = b / 255.0;
+        return normalizedA + normalizedB - 2 * (normalizedA * normalizedB);
+    }
+    
+    /// <summary>
     /// Gets the absolute value of the bottom layer minus the top layer and returns it.
     /// </summary>
     /// <param name="a">The top layer</param>
